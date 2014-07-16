@@ -1,0 +1,70 @@
+# This file contains the auditctl rules that are loaded
+# whenever the audit daemon is started via the initscripts.
+# The rules are simply the parameters that would be passed
+# to auditctl.
+
+# First rule - delete all
+-D
+
+# Increase the buffers to survive stress events.
+# Make this bigger for busy systems
+-b <%= node['auditd']['backlog'] %>
+
+# Feel free to add below this line. See auditctl man page
+# monitor time and hostname changes:
+-a always,exit -S adjtimex -S settimeofday -S stime -k time-change
+-a always,exit -S clock_settime -k time-change
+-a always,exit -S sethostname -S setdomainname -k system-locale
+# monitor auditd files specifically:
+-w /var/log/audit/ 
+-w /var/log/audit/audit.log 
+#-w /var/log/audit/audit_log.1 
+#-w /var/log/audit/audit_log.2 
+#-w /var/log/audit/audit_log.3 
+#-w /var/log/audit/audit_log.4 
+-w /etc/audit/auditd.conf -p wa
+-w /etc/audit/audit.rules -p wa
+-w /etc/libaudit.conf -p wa
+-w /etc/sysconfig/auditd -p wa
+# monitor generally important system files:
+-w /var/spool/atspool 
+-w /etc/at.allow  
+-w /etc/at.deny  
+-w /etc/cron.allow -p wa 
+-w /etc/cron.deny -p wa 
+-w /etc/cron.d/ -p wa 
+-w /etc/cron.daily/ -p wa 
+-w /etc/cron.hourly/ -p wa 
+-w /etc/cron.monthly/ -p wa 
+-w /etc/cron.weekly/ -p wa 
+-w /etc/crontab -p wa
+-w /var/spool/cron/root 
+-w /etc/group -p wa 
+-w /etc/passwd -p war
+-w /etc/shadow -p war
+-w /etc/login.defs -p wa 
+-w /etc/securetty 
+-w /var/log/faillog 
+-w /var/log/lastlog 
+-w /etc/hosts -p wa 
+-w /etc/sysconfig/
+-w /etc/inittab -p wa 
+-w /etc/init.d/
+-w /etc/init.d/auditd -p wa 
+-w /etc/ld.so.conf -p wa
+-w /etc/localtime -p wa 
+-w /etc/sysctl.conf -p wa 
+-w /etc/modprobe.d/
+-w /etc/modprobe.conf.local -p wa 
+-w /etc/modprobe.conf -p wa 
+-w /etc/pam.d/
+-w /etc/aliases -p wa
+-w /etc/postfix/ -p wa 
+-w /etc/ssh/sshd_config
+-w /etc/stunnel/stunnel.conf 
+-w /etc/stunnel/stunnel.pem
+-w /etc/vsftpd.ftpusers
+-w /etc/vsftpd.conf
+-a exit,always -S sethostname
+-w /etc/issue -p wa
+-w /etc/issue.net -p wa

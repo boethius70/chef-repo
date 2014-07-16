@@ -1,0 +1,25 @@
+{
+  "name": "startchurch-web-server",
+  "description": "Startchurch Web Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[apt]",
+    "recipe[cron]",
+    "recipe[iptables]",
+    "recipe[logrotate]",
+    "recipe[nfs]",
+    "recipe[nginx]",
+    "recipe[rsyslog]",
+    "recipe[sudo]",
+    "recipe[timezone]",
+    "recipe[auditd]",
+    "recipe[chef-client]"
+  ],
+  "env_run_lists": {
+  }
+}

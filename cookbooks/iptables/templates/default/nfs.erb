@@ -1,0 +1,12 @@
+# NFS ports
+-A FWR -p tcp -m tcp --dport 111 -j ACCEPT
+-A FWR -p tcp -m tcp --dport 2049 -j ACCEPT
+-A FWR -p tcp -m tcp --dport 32803 -j ACCEPT
+-A FWR -p tcp -m tcp --dport 892 -j ACCEPT
+-A FWR -p tcp -m tcp --dport 875 -j ACCEPT
+-A FWR -p tcp -m tcp --dport 662 -j ACCEPT
+-A FWR -p udp -m udp --dport 111 -j ACCEPT
+-A FWR -p udp -m udp --dport 32769 -j ACCEPT
+-A FWR -p udp -m udp --dport 892 -j ACCEPT
+-A FWR -p udp -m udp --dport 875 -j ACCEPT
+-A FWR -p udp -m udp --dport 662 -j ACCEPT

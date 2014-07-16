@@ -1,0 +1,13 @@
+log_level                :info
+log_location             STDOUT
+node_name                'ecra-server'
+client_key               '/home/jantoniou/mddx.chef/.chef/ecra-server.pem'
+validation_client_name   'chef-validator'
+validation_key           '/etc/chef-server/chef-validator.pem'
+chef_server_url          'https://ecra-chef1-dfw-prod.mddx.com'
+syntax_check_cache_path  '/home/jantoniou/mddx.chef/.chef/syntax_check_cache'
+cookbook_path		 '/home/jantoniou/mddx.chef/cookbooks'
+knife[:rackspace_api_username] = "ecra2013"
+knife[:rackspace_api_key] = "64ef2df740ebf28a61ad1f4bb6f25696"
+knife[:secret_file] = '/home/jantoniou/mddx.chef/.chef/mddx-databag.enc'
+knife[:environment] = 'production'

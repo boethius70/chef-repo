@@ -1,0 +1,28 @@
+{
+  "name": "ecra-file-server",
+  "description": "ECRA Encrypted File Server",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[iptables]",
+    "recipe[logrotate]",
+    "recipe[mddx-ssh]",
+    "recipe[chef-client]",
+    "recipe[mddx-users]",
+    "recipe[mddx-hosts]",
+    "recipe[sudo]",
+    "recipe[timezone]",
+    "recipe[auditd]",
+    "recipe[nfs]",
+    "recipe[nfs::server]",
+    "recipe[postfix]",
+    "recipe[ossec]",
+    "recipe[ossec::agent]"
+  ],
+  "env_run_lists": {
+  }
+}
