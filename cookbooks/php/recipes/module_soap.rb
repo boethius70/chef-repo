@@ -1,12 +1,10 @@
 #
-# Author::  Joshua Timberman (<joshua@opscode.com>)
-# Author::  Seth Chisamore (<schisamo@opscode.com>)
 # Author::  Panagiotis Papadomitsos (<pj@ezgr.net>)
 #
 # Cookbook Name:: php
-# Recipe:: module_apc
+# Recipe:: module_soap
 #
-# Copyright 2009-2011, Opscode, Inc.
+# Copyright 2009-2012, Panagiotis Papadomitsos
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,28 +19,9 @@
 # limitations under the License.
 #
 
-case node['platform_family']
-when 'rhel', 'fedora'
-  %w{ httpd-devel pcre pcre-devel }.each do |pkg|
-    package pkg do
-      action :install
-    end
-  end
+# Ubuntu/Debian already ship SOAP with the PHP common package
 
-  package 'php-pecl-apc' do
-    package_name 'php5-apc' if node['recipes'].include?('php::dotdeb')
-    action :install
-  end
-
-when 'debian'
-  package 'php-apc' do
-    action :install
-  end
-end
-
-template "#{node['php']['ext_conf_dir']}/apc.ini" do
-  source 'apc.ini.erb'
-  owner 'root'
-  group 'root'
-  mode 00644
+package 'php-soap' do
+  action :install
+  only_if { platform_family?( 'rhel', 'fedora' ) }
 end

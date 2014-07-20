@@ -1,9 +1,10 @@
 #
-# Author::  Christo De Lange (<opscode@dldinternet.com>)
-# Cookbook Name:: php
-# Recipe:: ini
+# Author::  Panagiotis Papadomitsos (<pj@ezgr.net>)
 #
-# Copyright 2011, Opscode, Inc.
+# Cookbook Name:: php
+# Recipe:: module_imap
+#
+# Copyright 2009-2012, Panagiotis Papadomitsos
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +19,17 @@
 # limitations under the License.
 #
 
-template "#{node['php']['conf_dir']}/php.ini" do
-	source node['php']['ini']['template']
-	cookbook node['php']['ini']['cookbook']
-	unless platform?('windows')
-		owner 'root'
-		group 'root'
-		mode '0644'
-	end
-	variables(:directives => node['php']['directives'])
+pkg = value_for_platform_family(
+    [ 'rhel', 'fedora' ] => 'php-imap',
+    'debian' => 'php5-imap'
+)
+
+package pkg do
+  action :install
+  notifies(:run, "execute[/usr/sbin/php5enmod imap]", :immediately) if platform?('ubuntu') && node['platform_version'].to_f >= 12.04
+end
+
+execute '/usr/sbin/php5enmod imap' do
+  action :nothing
+  only_if { platform?('ubuntu') && node['platform_version'].to_f >= 12.04 && ::File.exists?('/usr/sbin/php5enmod') }
 end

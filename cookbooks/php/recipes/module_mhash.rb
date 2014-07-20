@@ -1,9 +1,10 @@
 #
-# Author::  Joshua Timberman (<joshua@opscode.com>)
-# Cookbook Name:: php
-# Libraries:: helpers
+# Author::  Panagiotis Papadomitsos (<pj@ezgr.net>)
 #
-# Copyright 2013, Opscode, Inc.
+# Cookbook Name:: php
+# Recipe:: module_mhash
+#
+# Copyright 2009-2012, Panagiotis Papadomitsos
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,6 +19,9 @@
 # limitations under the License.
 #
 
-def el5_range
-  (0..99).to_a.map { |i| "5.#{i}" }
+# mhash is compiled in PHP on CentOS
+
+package 'php5-mhash' do
+  action :install
+  only_if { platform_family?('debian') }
 end

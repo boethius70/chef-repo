@@ -1,6 +1,8 @@
 #
 # Author::  Joshua Timberman (<joshua@opscode.com>)
 # Author::  Seth Chisamore (<schisamo@opscode.com>)
+# Author::  Panagiotis Papadomitsos (<pj@ezgr.net>)
+#
 # Cookbook Name:: php
 # Recipe:: module_ldap
 #
@@ -19,14 +21,17 @@
 # limitations under the License.
 #
 
-pkg = value_for_platform(
-  %w(centos redhat scientific fedora amazon oracle) => {
-    el5_range => 'php53-ldap',
-    'default' => 'php-ldap'
-  },
-  'default' => 'php5-ldap'
+pkg = value_for_platform_family(
+    [ 'rhel', 'fedora' ] => 'php-ldap',
+    'debian' => 'php5-ldap'
 )
 
 package pkg do
   action :install
+  notifies(:run, "execute[/usr/sbin/php5enmod ldap]", :immediately) if platform?('ubuntu') && node['platform_version'].to_f >= 12.04
+end
+
+execute '/usr/sbin/php5enmod ldap' do
+  action :nothing
+  only_if { platform?('ubuntu') && node['platform_version'].to_f >= 12.04 && ::File.exists?('/usr/sbin/php5enmod') }
 end

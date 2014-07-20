@@ -1,12 +1,10 @@
 #
-# Author::  Joshua Timberman (<joshua@opscode.com>)
-# Author::  Seth Chisamore (<schisamo@opscode.com>)
 # Author::  Panagiotis Papadomitsos (<pj@ezgr.net>)
 #
 # Cookbook Name:: php
-# Recipe:: module_apc
+# Recipe:: dotdeb
 #
-# Copyright 2009-2011, Opscode, Inc.
+# Copyright 2009-2012, Panagiotis Papadomitsos
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,28 +19,17 @@
 # limitations under the License.
 #
 
-case node['platform_family']
-when 'rhel', 'fedora'
-  %w{ httpd-devel pcre pcre-devel }.each do |pkg|
-    package pkg do
-      action :install
-    end
-  end
+if platform_family?('debian')
 
-  package 'php-pecl-apc' do
-    package_name 'php5-apc' if node['recipes'].include?('php::dotdeb')
-    action :install
-  end
+    apt_repository 'dotdeb-php' do
+      uri 'http://packages.dotdeb.org'
+      distribution node['php']['dotdeb_distribution']
+      components ['all']
+      key 'dotdeb.gpg'
+      notifies :run, 'execute[apt-get update]', :immediately
+      action :nothing
+      retries 2
+      retry_delay 2
+    end.run_action(:add)
 
-when 'debian'
-  package 'php-apc' do
-    action :install
-  end
-end
-
-template "#{node['php']['ext_conf_dir']}/apc.ini" do
-  source 'apc.ini.erb'
-  owner 'root'
-  group 'root'
-  mode 00644
 end

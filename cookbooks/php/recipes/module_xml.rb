@@ -1,12 +1,10 @@
 #
-# Author::  Joshua Timberman (<joshua@opscode.com>)
-# Author::  Seth Chisamore (<schisamo@opscode.com>)
 # Author::  Panagiotis Papadomitsos (<pj@ezgr.net>)
 #
 # Cookbook Name:: php
-# Recipe:: module_pgsql
+# Recipe:: module_xml
 #
-# Copyright 2009-2011, Opscode, Inc.
+# Copyright 2009-2012, Panagiotis Papadomitsos
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,17 +19,28 @@
 # limitations under the License.
 #
 
-pkg = value_for_platform_family(
-    [ 'rhel', 'fedora' ] => 'php-pgsql',
-    'debian' => 'php5-pgsql'
-)
-
-package pkg do
-  action :install
-  notifies(:run, "execute[/usr/sbin/php5enmod pgsql]", :immediately) if platform?('ubuntu') && node['platform_version'].to_f >= 12.04
+case node['platform_family']
+when 'debian'
+	%w{ xmlrpc xsl }.each do |pkg|
+  		package "php5-#{pkg}" do
+    		action :install
+        notifies(:run, "execute[/usr/sbin/php5enmod #{pkg}]", :immediately) if platform?('ubuntu') && node['platform_version'].to_f >= 12.04
+      end
+  end
+when 'rhel', 'fedora'
+  %w{ xml xmlrpc }.each do |pkg|
+      package "php-#{pkg}" do
+        action :install
+      end
+  end
 end
 
-execute '/usr/sbin/php5enmod pgsql' do
+execute '/usr/sbin/php5enmod xmlrpc' do
+  action :nothing
+  only_if { platform?('ubuntu') && node['platform_version'].to_f >= 12.04 && ::File.exists?('/usr/sbin/php5enmod') }
+end
+
+execute '/usr/sbin/php5enmod xsl' do
   action :nothing
   only_if { platform?('ubuntu') && node['platform_version'].to_f >= 12.04 && ::File.exists?('/usr/sbin/php5enmod') }
 end
