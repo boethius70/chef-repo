@@ -10,8 +10,8 @@ php_fpm 'nginx' do
   action :add
   user 'nginx'
   group 'nginx'
-  ip_address 127.0.0.1
-  port 9000
+  ip_address "127.0.0.1"
+  port "9000"
   socket true
   socket_path '/tmp/phpmyadmin.sock'
   socket_perms "0666"
