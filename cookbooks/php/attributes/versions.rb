@@ -26,7 +26,7 @@ default['php']['use_atomic_repo'] = true
 default['php']['dotdeb_distribution'] = 'squeeze-php54'
 
 # It's either mysql or mysqlnd
-default['php']['mysql_module_edition'] = 'mysqlnd'
+default['php']['mysql_module_edition'] = 'mysql'
 
 # Define package list
 case node['platform_family']
