@@ -12,13 +12,11 @@ php_fpm 'nginx' do
   group 'nginx'
   ip_address "127.0.0.1"
   port 9000
-  socket true
-  socket_path '/tmp/phpmyadmin.sock'
-  socket_perms "0666"
-  start_servers 2
-  min_spare_servers 2
-  max_spare_servers 8
-  max_children 8
+  socket false
+  start_servers 4
+  min_spare_servers 4 
+  max_spare_servers 12
+  max_children 20 
   terminate_timeout (node['php']['ini_settings']['max_execution_time'].to_i + 20)
   value_overrides({
     :error_log => "#{node['php']['fpm_log_dir']}/nginx-php.log"
