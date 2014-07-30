@@ -4,14 +4,15 @@
 # Cookbook Name:: php
 # Recipe:: nginx
 #
+# Delete any existing default configuration
+file "#{node['php']['nginx_conf_dir']}/default.conf" do
+  action :delete
+end
 
-#include_recipe 'nginx'
-
-template "#{node['php']['nginx_conf_dir']}/php.ini" do
+template "#{node['php']['nginx_conf_dir']}/default.conf" do
         source 'default.conf.erb'
         owner 'root'
         group 'root'
         mode 00644
-        only_if { platform_family?('debian','rhel') }
 end
 
