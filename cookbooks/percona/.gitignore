@@ -1,8 +1,7 @@
-*.tgz
-*.tar.gz
-vendor/bundle
-.bundle
-.DS_Store
-build/*
-tmp/
+cookbooks/*
+tmp
+.librarian/
+.kitchen/
+.kitchen.local.yml
+Berksfile.lock
 Gemfile.lock

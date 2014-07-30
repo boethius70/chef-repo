@@ -1,10 +1,10 @@
+#
+# Cookbook Name:: percona
+# Recipe:: client
+#
+
 include_recipe "percona::package_repo"
 
-case node["platform_family"]
-when "debian"
-  package "percona-server-client" do
-    options "--force-yes"
-  end
-when "rhel"
-  package "Percona-Server-client-55"
+node["percona"]["client"]["packages"].each do |percona_client_pkg|
+  package percona_client_pkg
 end
