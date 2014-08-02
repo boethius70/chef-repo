@@ -60,7 +60,7 @@ default["percona"]["server"]["net_read_timeout"]                = 120
 default["percona"]["server"]["connect_timeout"]                 = 10
 default["percona"]["server"]["wait_timeout"]                    = 28_800
 default["percona"]["server"]["old_passwords"]                   = 0
-default["percona"]["server"]["bind_address"]                    = "eth0"
+default["percona"]["server"]["bind_address"]                    = "0.0.0.0"
 %w[debian_password root_password].each do |attribute|
   next if defined?(node["percona"]["server"][attribute])
   default["percona"]["server"][attribute]                       = secure_password
