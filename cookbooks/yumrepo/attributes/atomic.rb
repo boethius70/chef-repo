@@ -17,6 +17,6 @@
 # limitations under the License.
 #
 
-default['repo']['atomic']['url'] = "http://www.atomicorp.com/channels/atomic/centos/$releasever/$basearch"
+default['repo']['atomic']['url'] = "http://www.atomicorp.com/channels/atomic/centos/6/$basearch"
 set['repo']['atomic']['key'] = "RPM-GPG-KEY.art"
 default['repo']['atomic']['key_url'] = "http://www.atomicorp.com/RPM-GPG-KEY.art.txt"
