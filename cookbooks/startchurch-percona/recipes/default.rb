@@ -42,5 +42,5 @@ node.override["percona"]["cluster"]["wsrep_cluster_address"] = cluster_address
 node.override["percona"]["cluster"]["wsrep_node_name"] = node['hostname']
 
 include_recipe 'percona::cluster'
-include_recipe 'percona::backup'
-include_recipe 'percona::toolkit'
+#include_recipe 'percona::backup'
+#include_recipe 'percona::toolkit'

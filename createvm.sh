@@ -20,7 +20,7 @@ then
 			ROLE="startchurch-percona"
 			;;	
 		esac
-		knife digital_ocean droplet create --server-name $1.startchurch.com --image 562354 --location 1 --size 66  --ssh-keys 123339,212918,36446 --bootstrap --run-list "role[$ROLE]"
+		knife digital_ocean droplet create --server-name $1.startchurch.com --image 562354 --location 1 --size 63  --ssh-keys 123339,212918,36446 --bootstrap --run-list "role[$ROLE]"
 	else 
 		error_msg
 	fi
