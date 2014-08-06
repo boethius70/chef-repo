@@ -15,12 +15,17 @@ then
 		case "$2" in
 			app)
 			ROLE="startchurch-web-server"
+			SIZE="66"
 			;;
 			sql)
 			ROLE="startchurch-percona"
+			SIZE="63"
 			;;	
+			basic)
+			ROLE="startchurch-basic"
+			SIZE="66"
 		esac
-		knife digital_ocean droplet create --server-name $1.startchurch.com --image 562354 --location 1 --size 63  --ssh-keys 123339,212918,36446 --bootstrap --run-list "role[$ROLE]"
+		knife digital_ocean droplet create --server-name $1.startchurch.com --image 562354 --location 1 --size $SIZE  --ssh-keys 123339,212918,36446 --bootstrap --run-list "role[$ROLE]"
 	else 
 		error_msg
 	fi
