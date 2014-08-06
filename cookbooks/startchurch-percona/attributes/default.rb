@@ -158,7 +158,7 @@ default["percona"]["cluster"]["wsrep_cluster_name"]             = ""
 default["percona"]["cluster"]["wsrep_sst_method"]               = "xtrabackup"
 default["percona"]["cluster"]["wsrep_node_name"]                = ""
 default["percona"]["cluster"]["wsrep_notify_cmd"]               = ""
-default["percona"]["cluster"]["wsrep_sst_auth"]                 = "startchurchrep:totallyawesomereplicationdude"
+default["percona"]["cluster"]["wsrep_sst_auth"]                 = "ssttransferuser:yeppityyepsir"
 
 # These both are used to build wsrep_sst_receive_address
 default["percona"]["cluster"]["wsrep_sst_receive_interface"]    = nil # Works like node["percona"]["server"]["bind_to"]
