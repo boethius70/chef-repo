@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 
 # Setup the Percona XtraDB Cluster
-cluster_ips = []
+cluster_ips = [192.34.60.135,104.131.198.79]
 unless Chef::Config[:solo]
   search(:node, 'role:percona').each do |other_node|
     next if other_node['private_ipaddress'] == node['private_ipaddress']
