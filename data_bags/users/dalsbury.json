@@ -1,0 +1,10 @@
+{
+  "id": "dalsbury",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOXK6FKZ+DPcB0z9OJSMmCFgp1pDT6C9EXkQ+C34HeTZ9vG5I9y0/Hpx+f9jU39/I28VMFDUX8GM09+LnzGqfyS+HjN9iOQ6vVUVKyMi0NodeIc1UWedH1+9C+08oSTdq/+z2Een+fYdtEbM+1LlHfGKcFrX0xKWh217qMlmejpCIVaG6WA0Nf3G7TC1QIrQINc2XxHE+/6A7vOgbrNOUMPfIQxUXuqhO0CgVtHGXl7S/xJ2EhlE7bZlwtCr1v+ekBjhy1/WSv2JkO9+MD+A93qVfXmTLFWcfq6ufS9KpcStAl2BoB8LQFfhyaA41gM6gCSmG0WGsO98gbOQgAQj6L davidalsbury@Biggins.local"
+  ],
+  "groups": [
+    "sysadmin"
+  ],
+  "comment": "David Alsbury"
+}

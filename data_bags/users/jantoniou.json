@@ -1,0 +1,10 @@
+{
+  "id": "jantoniou",
+  "ssh_keys": [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIBaw2GZRp+H01cJAkKdIUoZI/jnH9lqiXycJlfrVhANXuodMcMR+yf2kdaCRwJbe0IXGAM18OXCKc1R5EywGy5K9T2v1iusNhrryDjsAobWi13i/g401QF4tFjuZR2JP6wsgJOoX4PtKUQVDx2nKq5/7TT+zQ/xmwPVLotTDJ5KlQ== rsa-key-20101222"
+  ],
+  "groups": [
+    "sysadmin"
+  ],
+  "comment": "Jim Antoniou"
+}

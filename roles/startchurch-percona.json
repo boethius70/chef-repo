@@ -1,0 +1,30 @@
+{
+  "name": "startchurch-percona",
+  "description": "StartChurch Percona XtraDB Cluster",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "percona": {
+      "cluster": {
+        "package": "Percona-XtraDB-Cluster-56",
+        "wsrep_cluster_name": "percona_cluster_1",
+        "wsrep_sst_receive_interface": "eth0"
+      },
+      "server": {
+        "role": "cluster"
+      }
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[sudo]",
+    "recipe[yum-epel]",
+    "recipe[memcached]",
+    "recipe[startchurch-percona]",
+    "recipe[startchurch-users]",
+    "recipe[user::data_bag]"
+  ],
+  "env_run_lists": {
+  }
+}
