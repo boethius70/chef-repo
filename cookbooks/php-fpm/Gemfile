@@ -2,6 +2,6 @@ source "http://rubygems.org"
 
 gem 'rake'
 gem "chef", "~> 10.12.0"
-gem 'knife-ec2'
+gem 'knife-ec2', '>= 0.8.0'
 gem "moneta", "~> 0.6.0"
 gem 'stove', '~> 2.0.0'
